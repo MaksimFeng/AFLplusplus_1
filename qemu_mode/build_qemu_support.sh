@@ -73,7 +73,7 @@ echo "[*] Making sure qemuafl is checked out"
 git status 1>/dev/null 2>/dev/null
 if [ $? -eq 0 ]; then
   echo "[*] initializing qemuafl submodule"
-  git checkout master
+  git checkout main
   git add .
   git commit -m "update qemuafl"
   git push
