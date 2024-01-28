@@ -76,7 +76,8 @@ if [ $? -eq 0 ]; then
   git checkout main
   git add .
   git commit -m "update qemuafl"
-  git push
+  git merge --no-edit "$QEMUAFL_VERSION"
+  git push -u origin main
   git submodule init || exit 1
   git submodule update ./qemuafl 2>/dev/null # ignore errors
 else
