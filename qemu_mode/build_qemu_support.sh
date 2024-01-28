@@ -73,13 +73,32 @@ echo "[*] Making sure qemuafl is checked out"
 git status 1>/dev/null 2>/dev/null
 if [ $? -eq 0 ]; then
   echo "[*] initializing qemuafl submodule"
-  git checkout main
-  git add .
-  git commit -m "update qemuafl"
-  git merge --no-edit "$QEMUAFL_VERSION"
-  git push -u origin main
-  git submodule init || exit 1
-  git submodule update ./qemuafl 2>/dev/null # ignore errors
+  # git checkout main
+  # cd qemuafl
+  # git checkout desired-branch
+  # git add .
+  # git commit -m "Describe your changes here"
+  # git push origin desired-branch
+  # cd ../..
+  # # git add path/to/SubmoduleRepo
+  # git commit -m "Updated submodule to latest commit"
+  # git push origin main
+  # # git add .
+  # # git commit -m "update qemuafl"
+  # # git merge --no-edit "$QEMUAFL_VERSION"
+  # # # git push -u origin main
+  # git submodule init || exit 1
+  # git submodule update ./qemuafl 2>/dev/null # ignore errors
+  # cd qemu_mode || exit 1
+    echo "[*] cloning qemuafl"
+  test -d qemuafl/.git || {
+    CNT=1
+    while [ '!' -d qemuafl/.git -a "$CNT" -lt 4 ]; do
+      echo "Trying to clone qemuafl (attempt $CNT/3)"
+      git clone --depth 1 https://github.com/MaksimFeng/qemuafl-dataflow
+      CNT=`expr "$CNT" + 1`
+    done
+  }
 else
   echo "[*] cloning qemuafl"
   test -d qemuafl/.git || {
