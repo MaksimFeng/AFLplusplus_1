@@ -73,6 +73,10 @@ echo "[*] Making sure qemuafl is checked out"
 git status 1>/dev/null 2>/dev/null
 if [ $? -eq 0 ]; then
   echo "[*] initializing qemuafl submodule"
+  git checkout master
+  git add .
+  git commit -m "update qemuafl"
+  git push
   git submodule init || exit 1
   git submodule update ./qemuafl 2>/dev/null # ignore errors
 else
@@ -81,7 +85,7 @@ else
     CNT=1
     while [ '!' -d qemuafl/.git -a "$CNT" -lt 4 ]; do
       echo "Trying to clone qemuafl (attempt $CNT/3)"
-      git clone --depth 1 https://github.com/AFLplusplus/qemuafl
+      git clone --depth 1 https://github.com/MaksimFeng/qemuafl-dataflow
       CNT=`expr "$CNT" + 1`
     done
   }
