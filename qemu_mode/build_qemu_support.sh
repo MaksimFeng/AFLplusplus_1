@@ -90,12 +90,13 @@ if [ $? -eq 0 ]; then
   # git submodule init || exit 1
   # git submodule update ./qemuafl 2>/dev/null # ignore errors
   # cd qemu_mode || exit 1
-    echo "[*] cloning qemuafl"
+  rm -rf qemuafl
+  echo "[*] cloning qemuafl"
   test -d qemuafl/.git || {
     CNT=1
     while [ '!' -d qemuafl/.git -a "$CNT" -lt 4 ]; do
       echo "Trying to clone qemuafl (attempt $CNT/3)"
-      git clone --depth 1 https://github.com/MaksimFeng/qemuafl-dataflow
+      git clone --depth 1 https://github.com/MaksimFeng/qemuafl-dataflow qemuafl
       CNT=`expr "$CNT" + 1`
     done
   }
@@ -105,7 +106,7 @@ else
     CNT=1
     while [ '!' -d qemuafl/.git -a "$CNT" -lt 4 ]; do
       echo "Trying to clone qemuafl (attempt $CNT/3)"
-      git clone --depth 1 https://github.com/MaksimFeng/qemuafl-dataflow
+      git clone --depth 1 https://github.com/MaksimFeng/qemuafl-dataflow qemuafl
       CNT=`expr "$CNT" + 1`
     done
   }
@@ -115,14 +116,14 @@ test -e qemuafl/.git || { echo "[-] Not checked out, please install git or check
 echo "[+] Got qemuafl."
 
 cd "qemuafl" || exit 1
-if [ -n "$NO_CHECKOUT" ]; then
-  echo "[*] Skipping checkout to $QEMUAFL_VERSION"
-else
-  echo "[*] Checking out $QEMUAFL_VERSION"
-  sh -c 'git stash' 1>/dev/null 2>/dev/null
-  git pull
-  git checkout "$QEMUAFL_VERSION" || echo Warning: could not check out to commit $QEMUAFL_VERSION
-fi
+# if [ -n "$NO_CHECKOUT" ]; then
+#   echo "[*] Skipping checkout to $QEMUAFL_VERSION"
+# else
+#   echo "[*] Checking out $QEMUAFL_VERSION"
+#   sh -c 'git stash' 1>/dev/null 2>/dev/null
+#   git pull
+#   git checkout "$QEMUAFL_VERSION" || echo Warning: could not check out to commit $QEMUAFL_VERSION
+# fi
 
 echo "[*] Making sure imported headers matches"
 cp "../../include/config.h" "./qemuafl/imported/" || exit 1
