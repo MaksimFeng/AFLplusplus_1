@@ -1,0 +1,45 @@
+start_time        : 1706572818
+last_update       : 1706572863
+run_time          : 45
+fuzzer_pid        : 123908
+cycles_done       : 11
+cycles_wo_finds   : 11
+time_wo_finds     : 0
+execs_done        : 80804
+execs_per_sec     : 1783.71
+execs_ps_last_min : 0.00
+corpus_count      : 34
+corpus_favored    : 1
+corpus_found      : 0
+corpus_imported   : 0
+corpus_variable   : 0
+max_depth         : 1
+cur_item          : 27
+pending_favs      : 0
+pending_total     : 0
+stability         : 100.00%
+bitmap_cvg        : 0.04%
+saved_crashes     : 0
+saved_hangs       : 0
+last_find         : 0
+last_crash        : 0
+last_hang         : 0
+execs_since_crash : 80804
+exec_timeout      : 20
+slowest_exec_ms   : 0
+peak_rss_mb       : 8
+cpu_affinity      : 0
+edges_found       : 28
+total_edges       : 65536
+var_byte_count    : 0
+havoc_expansion   : 5
+auto_dict_entries : 0
+testcache_size    : 122553
+testcache_count   : 34
+testcache_evict   : 0
+afl_banner        : ./vulnerable
+afl_version       : ++4.10a
+target_mode       : qemu shmem_testcase 
+command_line      : ./afl-fuzz -i test -o output -Q -m none ./vulnerable @@
+virgin_bytes     : 466[fe] 6260[fe] 7172[fe] 7566[fe] 8784[fe] 10885[fe] 13988[fe] 14595[fe] 15977[fe] 16887[fe] 17770[fe] 18064[fe] 20756[fe] 20817[fe] 21577[fe] 29699[fe] 43211[fe] 47062[fe] 53303[fe] 53629[fe] 57154[fe] 57343[fe] 58359[fe] 59774[fe] 61034[fe] 62005[fe] 64458[fe] 65346[fe]
+var_bytes        :
